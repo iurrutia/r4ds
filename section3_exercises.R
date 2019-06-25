@@ -252,8 +252,11 @@ ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) +
 ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) + 
   geom_point(mapping = aes(x = displ, y = hwy, colour = drv), stroke = 2) + 
   geom_smooth(mapping = aes(x = displ, y = hwy, linetype = drv), size = 2, se = FALSE, show.legend = TRUE)
-# 6 - How do I get the little while halo around scatterplot points? :( 
-# Moving on, with a sense of looming incompleteness (from #6, above)
+# 6 (layer dots, first a layer of white dots, then add scatterplot segmented by colour)
+ggplot(mpg, aes(x = displ, y = hwy)) +
+  geom_point(size = 4, color = "white") +
+  geom_point(aes(colour = drv))
+
 #-----------
 
 # Here, ggplot uses a stat (statistical transformation) of the data, summarizing # of occurrences
@@ -473,7 +476,7 @@ ggplot(data = mpg, mapping = aes(x = cty, y = hwy)) +
   geom_abline() + # run up to here creates line
   coord_fixed() # x and y axes now look similar, are they to scale? We check:
 ?coord_fixed() 
-# The documentation shows we can fix the ration between the x and y axes (default is set to 1)
+# The documentation shows we can fix the ratios between the x and y axes (default is set to 1)
 
 #-----------
 
